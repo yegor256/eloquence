@@ -1,0 +1,78 @@
+# SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
+# SPDX-License-Identifier: MIT
+
+.ONESHELL:
+.SHELLFLAGS := -e -o pipefail -c
+.SECONDARY:
+SHELL := bash
+
+TEXS=$(shell find tex/ -name '*.tex' | sort)
+SECTIONS=$(subst tex/,target/sections/,${TEXS:.tex=.pdf})
+TSECTIONS=${SECTIONS:.pdf=.tex}
+VALES=$(subst target/sections/,target/vale/,${SECTIONS:.pdf=.txt})
+LTEXS=$(subst tex/,target/ltex/,${TEXS:.tex=.txt})
+PGFS=$(addprefix target/,$(addsuffix -pgfkeys.tex,formats langs libs terms orgs))
+
+spell: target/texsc.txt vale
+
+vale: $(VALES) target/vale/headings.txt
+
+target/vale/headings.txt: book.pdf
+
+target/print.txt: steps/print.sh $(TEXS) | target
+	steps/print.sh
+	echo 'done' > "target/print.txt"
+
+target/texsc.txt: $(TEXS) | target
+	texsc $(TEXS)
+	echo 'clean' > "$@"
+
+target/texqc.txt: book.pdf book.log cover.log | target
+	texqc book
+	texqc cover
+	echo 'clean' > "$@"
+
+target/ltex.txt: $(TEXS) target/ltex/bin/ltex-cli steps/ltex.sh | target
+	steps/ltex.sh target/ltex/bin/ltex-cli "$(TEXS)"
+	echo $$? > "$@"
+
+target/ltex/bin/ltex-cli: steps/setup-ltex.sh | target
+	steps/setup-ltex.sh target
+
+target/vale/%.txt: target/sections/%.md .vale.ini vale-styles | target/vale
+	vale "$<"
+	echo $$? > "$@"
+
+target/vale/headings.txt: target/headings.csv .vale.ini vale-styles | target/vale
+	vale "$<"
+	echo $$? > "$@"
+
+target/sections/%.md: target/sections/%.pdf | target/sections
+	pdftotext "$<" "$@"
+	sed -i -E 's/===(.*)==(.*)===/<!-- vale \1 = off --> \2 <!-- vale \1 = on -->/g' "$@"
+
+target/sections/%.pdf: target/sections/%.tex steps/compile-section.sh | target/sections
+	steps/compile-section.sh "$<" "$@"
+
+target/sections/%.tex: tex/%.tex steps/create-section.sh | target/sections
+	steps/create-section.sh "$<" "$@"
+
+target/gpt.txt: book.pdf
+	steps/gpt-proof.sh book.pdf target/anchors.csv
+	echo $$? > "$@"
+
+target:
+	mkdir -p target
+
+target/sections:
+	mkdir -p target/sections
+
+target/vale:
+	mkdir -p target/vale
+
+wipe:
+	rm -rf target
+
+clean:
+	latexmk -C
+	rm -rf kdpcover-pages-count.txt *.bbl-SAVE-ERROR target/sections target/vale target/ltex.txt target/libs.txt target/terms.txt target/libs-pgfkeys.tex target/terms-pgfkeys.tex target/inputs.txt target/texsc.txt target/texqc.txt
