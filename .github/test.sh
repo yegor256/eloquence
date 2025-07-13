@@ -6,7 +6,7 @@ set -e -o pipefail
 
 tmp=.test
 mkdir -p "${tmp}/eloquence"
-cp -R ./*.sh ltex.json eloquence.defs .vale.ini vale-styles "${tmp}/eloquence"
+cp -R ./*.sh ltex.json eloquence.defs vale.ini vale-styles "${tmp}/eloquence"
 cd "${tmp}"
 
 mkdir -p tex
