@@ -4,7 +4,8 @@
 
 set -e -o pipefail
 
-tmp=$(mktemp -d)
+tmp=.test
+mkdir -p "${tmp}"
 mkdir "${tmp}/eloquence"
 cp -R ./*.sh eloquence.defs .vale.ini vale-styles "${tmp}/eloquence"
 cd "${tmp}"
@@ -16,5 +17,5 @@ echo "include eloquence/eloquence.defs" > Makefile
 
 make eloquence
 make texsc
-make vale
 make ltex
+make vale

@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
+# SPDX-License-Identifier: MIT
+
+[files]
+extend-exclude = [
+    "vale-styles/**"
+]

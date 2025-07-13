@@ -34,7 +34,7 @@ $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli ltex.sh | $(TMP
 	"$(ROOT)/ltex.sh" $(TMP)/ltex/bin/ltex-cli "$(ELOQUENCE_TEXS)"
 	date > "$@"
 
-$(TMP)/ltex/bin/ltex-cli: setup-ltex.sh | $(TMP)
+$(TMP)/ltex/bin/ltex-cli: $(ROOT)/setup-ltex.sh | $(TMP)
 	"$(ROOT)/setup-ltex.sh" $(TMP)
 
 $(TMP)/vale/%.txt: $(TMP)/md/%.md .vale.ini vale-styles | $(TMP)/vale
