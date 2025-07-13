@@ -4,7 +4,7 @@
 .ONESHELL:
 .SHELLFLAGS := -e -o pipefail -c
 .SECONDARY:
-.PHONY: eloquence vale ltex texsc
+.PHONY: eloquence vale ltex texsc all clean test
 SHELL := bash
 
 TEXS=$(shell find tex/ -name '*.tex' | sort)
@@ -14,6 +14,7 @@ VALES=$(subst .eloquence/sections/,.eloquence/vale/,${SECTIONS:.pdf=.txt})
 LTEXS=$(subst tex/,.eloquence/ltex/,${TEXS:.tex=.txt})
 PGFS=$(addprefix .eloquence/,$(addsuffix -pgfkeys.tex,formats langs libs terms orgs))
 
+.SILENT:
 eloquence:
 	echo "You can use: ltex vale texsc"
 
