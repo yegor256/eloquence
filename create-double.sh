@@ -16,6 +16,7 @@ commands=(
     'faFacebook [0] {}'
     'faThumbsUp [0] {}'
     'keys [1] {"Ctrl"}'
+    'eolang [1] {EO}'
     'iexec [1] {}'
     'ffinput [1] {code skipped.}'
     'ix [1] {#1}'

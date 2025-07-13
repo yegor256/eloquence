@@ -26,8 +26,8 @@
         "\\term{}": "default"
       },
       "environments": {
-        "ffsave": "ignore",
         "ffcode": "ignore",
+        "ffsave": "ignore",
         "inparaenum": "ignore"
       }
     }
