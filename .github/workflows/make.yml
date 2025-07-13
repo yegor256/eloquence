@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install --yes poppler-utils
       - uses: zauguin/install-texlive@v4.0.0
         with:
           packages: scheme-basic geometry etoolbox xcolor paralist pgf xkeyval mathtools tikzmark booktabs to-be-determined
