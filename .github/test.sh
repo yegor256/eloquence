@@ -10,7 +10,12 @@ cp -R eloquence.defs ./*.sh ltex.json vale.ini vale-styles "${tmp}/eloquence"
 cd "${tmp}"
 
 mkdir -p tex
-echo "Hello, world." > tex/hello.tex
+cat > tex/hello.tex <<EOT
+Hello, world.
+\begin{ffcode}[columns=fullflexible]
+This should be replaced.
+\end{ffcode}
+EOT
 
 echo "include eloquence/eloquence.defs" > Makefile
 
