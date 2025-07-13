@@ -1,0 +1,34 @@
+{
+  "ltex": {
+    "disabledRules": {
+      "en-US": [
+        "COMMA_PARENTHESIS_WHITESPACE",
+        "UPPERCASE_SENTENCE_START",
+        "CONSECUTIVE_SPACES",
+        "MORFOLOGIK_RULE_EN_US"
+      ]
+    },
+    "language": "en-US",
+    "latex": {
+      "commands": {
+        "\\citep{}": "ignore",
+        "\\citet{}": "vowelDummy",
+        "\\cref{}": "dummy",
+        "\\ff{}": "dummy",
+        "\\footlink{}": "ignore",
+        "\\human{}{}": "vowelDummy",
+        "\\iexec{}": "ignore",
+        "\\jttu{}": "ignore",
+        "\\lib{}": "default",
+        "\\nospell{}": "dummy",
+        "\\org{}": "default",
+        "\\tbd{}": "ignore",
+        "\\term{}": "default"
+      },
+      "environments": {
+        "ffcode": "ignore",
+        "inparaenum": "ignore"
+      }
+    }
+  }
+}

@@ -30,7 +30,7 @@ $(TMP)/jobs/texsc.txt: $(ELOQUENCE_TEXS) | $(TMP)/jobs
 	texsc $(ELOQUENCE_TEXS)
 	date > "$@"
 
-$(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli ltex.sh | $(TMP)
+$(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh | $(TMP)
 	"$(ROOT)/ltex.sh" $(TMP)/ltex/bin/ltex-cli "$(ELOQUENCE_TEXS)"
 	date > "$@"
 

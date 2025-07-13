@@ -5,12 +5,11 @@
 set -e -o pipefail
 
 tmp=.test
-mkdir -p "${tmp}"
-mkdir "${tmp}/eloquence"
-cp -R ./*.sh eloquence.defs .vale.ini vale-styles "${tmp}/eloquence"
+mkdir -p "${tmp}/eloquence"
+cp -R ./*.sh ltex.json eloquence.defs .vale.ini vale-styles "${tmp}/eloquence"
 cd "${tmp}"
 
-mkdir tex
+mkdir -p tex
 echo "Hello, world!" > tex/hello.tex
 
 echo "include eloquence/eloquence.defs" > Makefile
