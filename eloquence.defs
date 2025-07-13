@@ -13,7 +13,8 @@ VALES=$(subst .eloquence/sections/,.eloquence/vale/,${SECTIONS:.pdf=.txt})
 LTEXS=$(subst tex/,.eloquence/ltex/,${TEXS:.tex=.txt})
 PGFS=$(addprefix .eloquence/,$(addsuffix -pgfkeys.tex,formats langs libs terms orgs))
 
-spell: .eloquence/texsc.txt vale
+eloquence:
+	echo "You can use: ltex vale texsc"
 
 vale: $(VALES) .eloquence/vale/headings.txt
 
