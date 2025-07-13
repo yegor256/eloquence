@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          sudo apt-get update
-          sudo apt-get install --yes texlive-latex-base
+      - uses: zauguin/install-texlive@v4.0.0
+        with:
+          packages: scheme-basic geometry etoolbox xcolor paralist multicol booktabs tikz to-be-determined
+          texlive_version: 2025
       - run: make
