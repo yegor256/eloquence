@@ -29,3 +29,4 @@ Don't forget to add `.eloquence/` to `.gitignore`.
 [Make]: https://www.gnu.org/software/make/
 [Vale]: https://vale.sh/
 [texsc]: https://github.com/yegor256/texsc
+[pdflatex]:
