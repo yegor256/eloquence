@@ -20,4 +20,6 @@ You should be able to use `help` target to see all avaiable features:
 make help
 ```
 
+Don't forget to add `.eloquence/` to `.gitignore`.
+
 [Make]: https://www.gnu.org/software/make/
