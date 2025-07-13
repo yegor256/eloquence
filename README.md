@@ -1,5 +1,8 @@
 # Useful Defs for Books Written in LaTeX
 
+[![make](https://github.com/yegor256/eloquence/actions/workflows/make.yml/badge.svg)](https://github.com/yegor256/eloquence/actions/workflows/make.yml)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/eloquence/blob/master/LICENSE.txt)
+
 First, add this repo as a submodule to your repo:
 
 ```bash
