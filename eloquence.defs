@@ -4,6 +4,7 @@
 .ONESHELL:
 .SHELLFLAGS := -e -o pipefail -c
 .SECONDARY:
+.PHONY: eloquence vale ltex texsc
 SHELL := bash
 
 TEXS=$(shell find tex/ -name '*.tex' | sort)
