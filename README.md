@@ -11,7 +11,7 @@ git add submodule https://github.com/yegor256/eloquence
 
 Then, install [Vale], [texsc], [aspell], and [pdftotext].
 
-Then, put this into your [Make] `Makefile`:
+Then, add this line to the bottom of your [Make] `Makefile`:
 
 ```bash
 include eloquence/eloquence.defs
