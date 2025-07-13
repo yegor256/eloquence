@@ -12,4 +12,4 @@ test:
 	.github/test.sh
 
 clean:
-	rm -rf .test
+	echo 'Nothing to clean'

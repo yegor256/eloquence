@@ -8,8 +8,11 @@ tex=$1
 pdf=$2
 
 tmp=$(mktemp -d)
-cp "${tex}" "${tmp}/section.tex"
+cp "${tex}" "${tmp}/double.tex"
 cd "${tmp}"
-pdflatex -interaction=errorstopmode -halt-on-error -no-shell-escape section.tex > /dev/null
+if ! pdflatex -interaction=errorstopmode -halt-on-error -no-shell-escape double.tex > log.txt 2>&1; then
+    cat log.txt
+    exit 1
+fi
 cd -
-mv "${tmp}/section.pdf" "${pdf}"
+mv "${tmp}/double.pdf" "${pdf}"
