@@ -6,7 +6,7 @@ First, add this repo as a submodule to your repo:
 git add submodule https://github.com/yegor256/eloquence
 ```
 
-Then, install [Vale], [texsc], and [pdftotext].
+Then, install [Vale], [texsc], [aspell], and [pdftotext].
 
 Then, put this into your [Make] `Makefile`:
 
@@ -30,3 +30,4 @@ Don't forget to add `.eloquence/` to `.gitignore`.
 [Vale]: https://vale.sh/
 [texsc]: https://github.com/yegor256/texsc
 [pdftotext]: https://pypi.org/project/pdftotext/
+[aspell]: http://aspell.net/

@@ -17,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install --yes poppler-utils
+      - run: sudo apt-get update && sudo apt-get install --yes aspell
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
