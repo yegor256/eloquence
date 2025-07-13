@@ -22,9 +22,6 @@ ltex: $(TMP)/jobs/ltex.txt
 
 texsc: $(TMP)/jobs/texsc.txt
 
-clean:
-	rm -rf $(TMP)/jobs $(TMP)/vale $(TMP)/ltex $(TMP)/md $(TMP)/pdf $(TMP)/double
-
 $(TMP)/jobs/vale.txt: $(ELOQUENCE_VALES)
 
 $(TMP)/jobs/texsc.txt: $(ELOQUENCE_TEXS) | $(TMP)/jobs
