@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 extends: existence
 message: "Remove '%s' if it's not important to the meaning of the statement."
 link: https://docs.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences

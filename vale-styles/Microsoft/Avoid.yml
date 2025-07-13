@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 extends: existence
 message: "Don't use '%s'. See the A-Z word list for details."
 # See the A-Z word list

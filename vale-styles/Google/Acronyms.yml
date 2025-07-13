@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 extends: conditional
 message: "Spell out '%s', if it's unfamiliar to the audience."
 link: 'https://developers.google.com/style/abbreviations'

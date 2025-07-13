@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 extends: existence
 message: "'%s' doesn't need a hyphen."
 link: https://docs.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/hyphens

@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 extends: existence
 message: "Always spell out the name of the month."
 link: https://docs.microsoft.com/en-us/style-guide/numbers#numbers-in-dates

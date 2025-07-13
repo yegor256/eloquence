@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 extends: existence
 link: 'https://developers.google.com/style/voice'
 message: "In general, use active voice instead of passive voice ('%s')."
