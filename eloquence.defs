@@ -14,9 +14,7 @@ ELOQUENCE_LTEXS=$(subst tex/,$(TMP)/ltex/,${ELOQUENCE_TEXS:.tex=.txt})
 ROOT=eloquence
 TMP=.eloquence
 
-.SILENT:
-eloquence:
-	echo "You can use: ltex vale texsc"
+eloquence: vale ltex texsc
 
 vale: $(TMP)/jobs/vale.txt
 

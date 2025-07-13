@@ -14,7 +14,8 @@ include eloquence/eloquence.defs
 
 Then, keep all your `.tex` files in the `tex/` directory.
 No subdirectories!
-You should be able to use `eloquence` target to see all available features:
+You should be able to use `eloquence` target to check your code for proper
+  grammar and spelling:
 
 ```text
 make eloquence
