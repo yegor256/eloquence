@@ -14,7 +14,7 @@ include eloquence/eloquence.defs
 
 Then, keep all your `.tex` files in the `tex/` directory.
 No subdirectories!
-You should be able to use `help` target to see all avaiable features:
+You should be able to use `help` target to see all available features:
 
 ```text
 make help
