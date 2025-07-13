@@ -17,6 +17,7 @@ commands=(
     'faThumbsUp [0] {}'
     'keys [1] {"Ctrl"}'
     'iexec [1] {}'
+    'ffinput [1] {code skipped.}'
     'ix [1] {#1}'
     'ixx [2] {#2}'
     'jttu [1] {}'
@@ -62,6 +63,7 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
         printf '\\newcommand\\%s%s{\\textcolor{orange}{%s}}\n' "${cmd}" "${args}" "${rep}"
     done
     printf '\\newenvironment{gpt}{}{}\n'
+    printf '\\newenvironment{ffsave}{}{}\n'
     printf '\\tolerance=1\n'
     printf '\\emergencystretch=\maxdimen\n'
     printf '\\hyphenpenalty=10000\n'
