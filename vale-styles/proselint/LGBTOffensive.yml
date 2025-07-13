@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
+# SPDX-License-Identifier: MIT
+---
+extends: existence
+message: "'%s' is offensive. Remove it or consider the context."
+ignorecase: true
+tokens:
+  - fag
+  - faggot
+  - dyke
+  - sodomite
+  - homosexual agenda
+  - gay agenda
+  - transvestite
+  - homosexual lifestyle
+  - gay lifestyle

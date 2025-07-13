@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
+# SPDX-License-Identifier: MIT
+---
+extends: consistency
+message: "Inconsistent spelling of '%s'."
+level: error
+ignorecase: true
+either:
+  advisor: adviser
+  centre: center
+  colour: color
+  emphasise: emphasize
+  finalise: finalize
+  focussed: focused
+  labour: labor
+  learnt: learned
+  organise: organize
+  organised: organized
+  organising: organizing
+  recognise: recognize

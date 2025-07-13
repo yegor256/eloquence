@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
+# SPDX-License-Identifier: MIT
+---
+extends: existence
+message: "Don't use plurals in parentheses such as in '%s'."
+link: "https://developers.google.com/style/plurals-parentheses"
+level: error
+nonword: true
+action:
+  name: edit
+  params:
+    - trim_right
+    - "(s)"
+tokens:
+  - '\b\w+\(s\)'

@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
+# SPDX-License-Identifier: MIT
+---
+extends: existence
+message: "Don't put a period at the end of a heading."
+link: "https://developers.google.com/style/capitalization#capitalization-in-titles-and-headings"
+nonword: true
+level: warning
+scope: heading
+action:
+  name: edit
+  params:
+    - trim_right
+    - "."
+tokens:
+  - '[a-z0-9][.]\s*$'

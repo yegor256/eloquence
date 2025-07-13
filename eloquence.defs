@@ -3,69 +3,66 @@
 
 .ONESHELL:
 .SHELLFLAGS := -e -o pipefail -c
-.SECONDARY:
 .PHONY: eloquence vale ltex texsc all clean test
 SHELL := bash
 
-TEXS=$(shell find tex/ -name '*.tex' | sort)
-SECTIONS=$(subst tex/,.eloquence/sections/,${TEXS:.tex=.pdf})
-TSECTIONS=${SECTIONS:.pdf=.tex}
-VALES=$(subst .eloquence/sections/,.eloquence/vale/,${SECTIONS:.pdf=.txt})
-LTEXS=$(subst tex/,.eloquence/ltex/,${TEXS:.tex=.txt})
-PGFS=$(addprefix .eloquence/,$(addsuffix -pgfkeys.tex,formats langs libs terms orgs))
+ELOQUENCE_TEXS=$(shell find tex/ -name '*.tex' | sort)
+ELOQUENCE_PDFS=$(subst tex/,$(TMP)/pdf/,${ELOQUENCE_TEXS:.tex=.pdf})
+ELOQUENCE_VALES=$(subst $(TMP)/pdf/,$(TMP)/vale/,${ELOQUENCE_PDFS:.pdf=.txt})
+ELOQUENCE_LTEXS=$(subst tex/,$(TMP)/ltex/,${ELOQUENCE_TEXS:.tex=.txt})
+
+ROOT=eloquence
+TMP=.eloquence
 
 .SILENT:
 eloquence:
 	echo "You can use: ltex vale texsc"
 
-vale: $(VALES) .eloquence/vale/headings.txt
+vale: $(TMP)/jobs/vale.txt
 
-.eloquence/vale/headings.txt: book.pdf
+ltex: $(TMP)/jobs/ltex.txt
 
-.eloquence/print.txt: eloquence/print.sh $(TEXS) | target
-	eloquence/print.sh
-	echo 'done' > ".eloquence/print.txt"
+texsc: $(TMP)/jobs/texsc.txt
 
-.eloquence/texsc.txt: $(TEXS) | target
-	texsc $(TEXS)
-	echo 'clean' > "$@"
+$(TMP)/jobs/vale.txt: $(ELOQUENCE_VALES)
 
-.eloquence/texqc.txt: book.pdf book.log cover.log | target
-	texqc book
-	texqc cover
-	echo 'clean' > "$@"
+$(TMP)/jobs/texsc.txt: $(ELOQUENCE_TEXS) | $(TMP)/jobs
+	texsc $(ELOQUENCE_TEXS)
+	date > "$@"
 
-.eloquence/ltex.txt: $(TEXS) .eloquence/ltex/bin/ltex-cli eloquence/ltex.sh | target
-	eloquence/ltex.sh .eloquence/ltex/bin/ltex-cli "$(TEXS)"
-	echo $$? > "$@"
+$(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli ltex.sh | $(TMP)
+	"$(ROOT)/ltex.sh" $(TMP)/ltex/bin/ltex-cli "$(ELOQUENCE_TEXS)"
+	date > "$@"
 
-.eloquence/ltex/bin/ltex-cli: eloquence/setup-ltex.sh | target
-	eloquence/setup-ltex.sh target
+$(TMP)/ltex/bin/ltex-cli: setup-ltex.sh | $(TMP)
+	"$(ROOT)/setup-ltex.sh" $(TMP)
 
-.eloquence/vale/%.txt: .eloquence/sections/%.md .vale.ini vale-styles | .eloquence/vale
+$(TMP)/vale/%.txt: $(TMP)/md/%.md .vale.ini vale-styles | $(TMP)/vale
 	vale "$<"
-	echo $$? > "$@"
+	date > "$@"
 
-.eloquence/vale/headings.txt: .eloquence/headings.csv .vale.ini vale-styles | .eloquence/vale
-	vale "$<"
-	echo $$? > "$@"
-
-.eloquence/sections/%.md: .eloquence/sections/%.pdf | .eloquence/sections
+$(TMP)/md/%.md: $(TMP)/pdf/%.pdf | $(TMP)/md
 	pdftotext "$<" "$@"
 	sed -i -E 's/===(.*)==(.*)===/<!-- vale \1 = off --> \2 <!-- vale \1 = on -->/g' "$@"
 
-.eloquence/sections/%.pdf: .eloquence/sections/%.tex eloquence/compile-section.sh | .eloquence/sections
-	eloquence/compile-section.sh "$<" "$@"
+$(TMP)/pdf/%.pdf: $(TMP)/fake/%.tex $(ROOT)/compile-section.sh | $(TMP)/sections
+	$(ROOT)/compile-section.sh "$<" "$@"
 
-.eloquence/sections/%.tex: tex/%.tex eloquence/create-section.sh | .eloquence/sections
-	eloquence/create-section.sh "$<" "$@"
+$(TMP)/fake/%.tex: tex/%.tex $(ROOT)/create-section.sh | $(TMP)/fake
+	$(ROOT)/create-section.sh "$<" "$@"
 
-.eloquence/gpt.txt: book.pdf
-	eloquence/gpt-proof.sh book.pdf .eloquence/anchors.csv
+$(TMP)/gpt.txt: book.pdf
+	$(ROOT)/gpt-proof.sh book.pdf $(TMP)/anchors.csv
 	echo $$? > "$@"
 
-.eloquence/sections:
-	mkdir -p .eloquence/sections
+$(TMP):
+	mkdir -p $(TMP)
 
-.eloquence/vale:
-	mkdir -p .eloquence/vale
+$(TMP)/jobs:
+	mkdir -p $(TMP)/jobs
+
+$(TMP)/pdfs:
+	mkdir -p $(TMP)/pdfs
+
+$(TMP)/vale:
+	mkdir -p $(TMP)/vale

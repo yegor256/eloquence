@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: Copyright (c) Yegor Bugayenko, 2025
+# SPDX-License-Identifier: MIT
+---
+extends: existence
+message: With lowercase letters, the periods are standard.
+ignorecase: false
+level: error
+nonword: true
+tokens:
+  - '\d{1,2} ?[ap]m\b'
