@@ -10,11 +10,14 @@ cp -R ./*.sh ltex.json eloquence.defs .vale.ini vale-styles "${tmp}/eloquence"
 cd "${tmp}"
 
 mkdir -p tex
-echo "Hello, world!" > tex/hello.tex
+echo "Hello, world." > tex/hello.tex
 
 echo "include eloquence/eloquence.defs" > Makefile
 
 make eloquence
 make texsc
-make ltex
+make .eloquence/fake/hello.tex
+make .eloquence/pdf/hello.pdf
+make .eloquence/md/hello.md
 make vale
+make ltex

@@ -37,7 +37,7 @@ $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh
 $(TMP)/ltex/bin/ltex-cli: $(ROOT)/setup-ltex.sh | $(TMP)
 	"$(ROOT)/setup-ltex.sh" $(TMP)
 
-$(TMP)/vale/%.txt: $(TMP)/md/%.md .vale.ini vale-styles | $(TMP)/vale
+$(TMP)/vale/%.txt: $(TMP)/md/%.md $(ROOT)/.vale.ini $(ROOT)/vale-styles | $(TMP)/vale
 	vale "$<"
 	date > "$@"
 
@@ -45,7 +45,7 @@ $(TMP)/md/%.md: $(TMP)/pdf/%.pdf | $(TMP)/md
 	pdftotext "$<" "$@"
 	sed -i -E 's/===(.*)==(.*)===/<!-- vale \1 = off --> \2 <!-- vale \1 = on -->/g' "$@"
 
-$(TMP)/pdf/%.pdf: $(TMP)/fake/%.tex $(ROOT)/compile-section.sh | $(TMP)/sections
+$(TMP)/pdf/%.pdf: $(TMP)/fake/%.tex $(ROOT)/compile-section.sh | $(TMP)/pdf
 	$(ROOT)/compile-section.sh "$<" "$@"
 
 $(TMP)/fake/%.tex: tex/%.tex $(ROOT)/create-section.sh | $(TMP)/fake
@@ -61,8 +61,14 @@ $(TMP):
 $(TMP)/jobs:
 	mkdir -p $(TMP)/jobs
 
-$(TMP)/pdfs:
-	mkdir -p $(TMP)/pdfs
+$(TMP)/md:
+	mkdir -p $(TMP)/md
+
+$(TMP)/pdf:
+	mkdir -p $(TMP)/pdf
+
+$(TMP)/fake:
+	mkdir -p $(TMP)/fake
 
 $(TMP)/vale:
 	mkdir -p $(TMP)/vale
