@@ -31,7 +31,7 @@ $(TMP)/jobs/texsc.txt: $(ELOQUENCE_TEXS) | $(TMP)/jobs
 	date > "$@"
 
 $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh | $(TMP)
-	"$(ROOT)/ltex.sh" $(TMP)/ltex/bin/ltex-cli "$(ELOQUENCE_TEXS)"
+	"$(ROOT)/ltex.sh" $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.json "$(ELOQUENCE_TEXS)"
 	date > "$@"
 
 $(TMP)/ltex/bin/ltex-cli: $(ROOT)/setup-ltex.sh | $(TMP)
