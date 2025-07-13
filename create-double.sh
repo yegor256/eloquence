@@ -63,7 +63,6 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
         printf '\\newcommand\\%s%s{\\textcolor{orange}{%s}}\n' "${cmd}" "${args}" "${rep}"
     done
     printf '\\newenvironment{gpt}{}{}\n'
-    printf '\\newenvironment{ffsave}{}{}\n'
     printf '\\tolerance=1\n'
     printf '\\emergencystretch=\maxdimen\n'
     printf '\\hyphenpenalty=10000\n'
@@ -71,7 +70,7 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
     printf '\\setlength{\\parskip}{2em}\n'
     printf '\\begin{document}\n'
     printf '\\thispagestyle{empty}\n'
-    perl -0777 -p -e "s/\\\begin\{ffcode\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{ffcode\}/code skipped./smg" "${src}" |
+    perl -0777 -p -e "s/\\\begin\{(ffcode|ffsave)\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{(ffcode|ffsave)\}/code skipped./smg" "${src}" |
         perl -0777 -p -e "s|\\\endinput||smg"
     printf '\\end{document}\n'
 ) > "${target}"
