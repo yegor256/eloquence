@@ -3,5 +3,10 @@
 
 [files]
 extend-exclude = [
-    "vale-styles/**"
+    "vale-styles/proselint/Nonwords.yml",
+    "vale-styles/proselint/Needless.yml",
+    "vale-styles/proselint/Cliches.yml",
+    "vale-styles/Google/Ordinal.yml",
+    "vale-styles/proselint/Archaisms.yml",
+    "vale-styles/Microsoft/Avoid.yml"
 ]
