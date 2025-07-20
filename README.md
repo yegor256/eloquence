@@ -17,15 +17,15 @@ Then, add this line to the bottom of your [Make] `Makefile`:
 include eloquence/eloquence.defs
 ```
 
-Keep all your `.tex` files in the `tex/` directory.
-No subdirectories!
-
 You should be able to use `eloquence` target to check your code for proper
   grammar and spelling:
 
 ```text
 make eloquence
 ```
+
+Keep all your `.tex` files in the `tex/` directory.
+No subdirectories!
 
 Don't forget to add `.eloquence/` to `.gitignore`.
 
