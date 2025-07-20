@@ -37,7 +37,8 @@ $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh
 	date > "$@"
 
 $(TMP)/ltex/bin/ltex-cli: $(ROOT)/setup-ltex.sh | $(TMP)
-	if ! which "ltex-cli" > $@; then
+	mkdir -p "$$(dirname "$@")"
+	if ! which "ltex-cli" > "$@"; then
 		"$(ROOT)/setup-ltex.sh" $(TMP)
 	fi
 
