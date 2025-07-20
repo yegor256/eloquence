@@ -29,11 +29,17 @@ $(TMP)/jobs/texsc.txt: $(ELOQUENCE_TEXS) | $(TMP)/jobs
 	date > "$@"
 
 $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh | $(TMP)/jobs
-	"$(ROOT)/ltex.sh" $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.json "$(ELOQUENCE_TEXS)"
+	cli=ltex-cli
+	if ! which "$${cli}"; then
+	    cli=$(TMP)/ltex/bin/ltex-cli
+	fi
+	"$(ROOT)/ltex.sh" "$${cli}" $(ROOT)/ltex.json "$(ELOQUENCE_TEXS)"
 	date > "$@"
 
 $(TMP)/ltex/bin/ltex-cli: $(ROOT)/setup-ltex.sh | $(TMP)
-	"$(ROOT)/setup-ltex.sh" $(TMP)
+	if ! which "ltex-cli" > $@; then
+		"$(ROOT)/setup-ltex.sh" $(TMP)
+	fi
 
 $(TMP)/vale/%.txt: $(TMP)/md/%.md $(ROOT)/vale.ini $(ROOT)/vale-styles | $(TMP)/vale
 	vale --config $(ROOT)/vale.ini "$<"
