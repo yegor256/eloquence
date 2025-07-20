@@ -9,7 +9,7 @@ First, add this repo as a submodule to your repo:
 git add submodule https://github.com/yegor256/eloquence
 ```
 
-Then, install [Vale], [texsc], [aspell], and [pdftotext].
+Then, install [Vale], [texsc], [aspell], [ltex], and [pdftotext].
 
 Then, add this line to the bottom of your [Make] `Makefile`:
 
@@ -34,3 +34,4 @@ Don't forget to add `.eloquence/` to `.gitignore`.
 [texsc]: https://github.com/yegor256/texsc
 [pdftotext]: https://pypi.org/project/pdftotext/
 [aspell]: http://aspell.net/
+[ltex]: https://valentjn.github.io/ltex/ltex-ls/installation.html
