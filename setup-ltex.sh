@@ -13,4 +13,5 @@ if [ ! -e "${tgz}" ] || [ ! -x "${target}/ltex/bin/ltex-cli" ]; then
     rm -rf "${target}/ltex-ls-${version}"
     tar -xzf "${tgz}" -C "${target}"
     mv "${target}/ltex-ls-${version}" "${target}/ltex"
+    chmod a+x "${target}/ltex/bin/ltex-cli"
 fi
