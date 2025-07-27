@@ -29,6 +29,21 @@ No subdirectories!
 
 Don't forget to add `.eloquence/` to `.gitignore`.
 
+## How to Contribute
+
+Fork repository, make changes, send us a
+[pull request](https://www.yegor256.com/2014/04/15/github-guidelines.html).
+We will review your changes and apply them to the `master` branch shortly,
+provided they don't violate our quality standards. To avoid frustration,
+before sending us your pull request please run full Make build:
+
+```bash
+make
+```
+
+You will need [GNU Make][Make] 4+.
+
+
 [Make]: https://www.gnu.org/software/make/
 [Vale]: https://vale.sh/
 [texsc]: https://github.com/yegor256/texsc
