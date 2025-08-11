@@ -43,7 +43,6 @@ make
 
 You will need [GNU Make][Make] 4+.
 
-
 [Make]: https://www.gnu.org/software/make/
 [Vale]: https://vale.sh/
 [texsc]: https://github.com/yegor256/texsc
