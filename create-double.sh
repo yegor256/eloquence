@@ -73,9 +73,6 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
     if [ -e "${repo}/.eloquence.double.tex" ]; then
         cat "${repo}/.eloquence.double.tex"
     fi
-    if [ -e "${repo}/.eloquence.double.sh" ]; then
-        bash "${repo}/.eloquence.double.sh"
-    fi
     printf '\\begin{document}\n'
     printf '\\thispagestyle{empty}\n'
     perl -0777 -p -e "s/\\\begin\{(ffcode|ffsave|phiquation\*?)\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{(ffcode|ffsave|phiquation\*?)\}/code skipped./smg" "${src}" \
@@ -83,3 +80,7 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
         | perl -0777 -p -e "s|\\\input\{.+?\}|input skipped.|smg"
     printf '\\end{document}\n'
 ) > "${target}"
+
+if [ -e "${repo}/.eloquence.double.sh" ]; then
+    bash "${repo}/.eloquence.double.sh" "${target}"
+fi
