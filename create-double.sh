@@ -78,7 +78,7 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
     fi
     printf '\\begin{document}\n'
     printf '\\thispagestyle{empty}\n'
-    perl -0777 -p -e "s/\\\begin\{(ffcode|ffsave)\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{(ffcode|ffsave)\}/code skipped./smg" "${src}" \
+    perl -0777 -p -e "s/\\\begin\{(ffcode|ffsave|phiquation\*?)\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{(ffcode|ffsave|phiquation\*?)\}/code skipped./smg" "${src}" \
         | perl -0777 -p -e "s|\\\endinput||smg" \
         | perl -0777 -p -e "s|\\\input\{.+?\}|input skipped.|smg"
     printf '\\end{document}\n'
