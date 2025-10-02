@@ -11,6 +11,7 @@ ELOQUENCE_PDFS=$(subst tex/,$(TMP)/pdf/,${ELOQUENCE_TEXS:.tex=.pdf})
 ELOQUENCE_VALES=$(subst $(TMP)/pdf/,$(TMP)/vale/,${ELOQUENCE_PDFS:.pdf=.txt})
 ELOQUENCE_LTEXS=$(subst tex/,$(TMP)/ltex/,${ELOQUENCE_TEXS:.tex=.txt})
 
+REPO=.
 ROOT=eloquence
 TMP=.eloquence
 
@@ -54,7 +55,7 @@ $(TMP)/pdf/%.pdf: $(TMP)/double/%.tex $(ROOT)/compile-double.sh | $(TMP)/pdf
 	$(ROOT)/compile-double.sh "$<" "$@"
 
 $(TMP)/double/%.tex: tex/%.tex $(ROOT)/create-double.sh | $(TMP)/double
-	$(ROOT)/create-double.sh "$<" "$@"
+	$(ROOT)/create-double.sh "$<" "$@" "$(REPO)"
 
 $(TMP):
 	mkdir -p $(TMP)

@@ -6,6 +6,7 @@ set -e -o pipefail
 
 src=$1
 target=$2
+repo=$3
 
 commands=(
     'faEnvelopeO [0] {}'
@@ -69,6 +70,12 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
     printf '\\hyphenpenalty=10000\n'
     printf '\\hbadness=10000\n'
     printf '\\setlength{\\parskip}{2em}\n'
+    if [ -e "${repo}/.eloquence.double.tex" ]; then
+        cat "${repo}/.eloquence.double.tex"
+    fi
+    if [ -e "${repo}/.eloquence.double.sh" ]; then
+        bash "${repo}/.eloquence.double.sh"
+    fi
     printf '\\begin{document}\n'
     printf '\\thispagestyle{empty}\n'
     perl -0777 -p -e "s/\\\begin\{(ffcode|ffsave)\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{(ffcode|ffsave)\}/code skipped./smg" "${src}" |
