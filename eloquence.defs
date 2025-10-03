@@ -29,14 +29,18 @@ $(TMP)/jobs/texsc.txt: $(ELOQUENCE_TEXS) | $(TMP)/jobs
 	texsc $(ELOQUENCE_TEXS)
 	date > "$@"
 
+.SILENT:
 $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh | $(TMP)/jobs
 	cli=ltex-cli
 	if ! which "$${cli}"; then
 	    cli=$(TMP)/ltex/bin/ltex-cli
 	fi
 	json=$(REPO)/ltex.json
-	if [ ! -e "$${json}" ]; then
+	if [ -e "$${json}" ]; then
+		echo "We are using custom LTeX config: $${json}"
+	else
 		json=$(ROOT)/ltex.json
+		echo "We are using default LTeX config: $${json}"
 	fi
 	"$(ROOT)/ltex.sh" "$${cli}" "$${json}" "$(ELOQUENCE_TEXS)"
 	date > "$@"
