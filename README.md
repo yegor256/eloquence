@@ -38,6 +38,9 @@ You can also create `.eloquence.double.sh` file.
 It will be executed with a single parameter: path of `.tex` file.
 You can modify the provided TeX document before it goes to Vale.
 
+You can create `.ltex.json` configuration file,
+thus replacing the [default one](ltex.json).
+
 ## How to Contribute
 
 Fork repository, make changes, send us a
