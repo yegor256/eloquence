@@ -25,6 +25,7 @@ texsc: $(TMP)/jobs/texsc.txt
 
 $(TMP)/jobs/vale.txt: $(ELOQUENCE_VALES)
 
+.SILENT:
 $(TMP)/jobs/texsc.txt: $(ELOQUENCE_TEXS) | $(TMP)/jobs
 	texsc $(ELOQUENCE_TEXS)
 	date > "$@"
@@ -45,23 +46,28 @@ $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh
 	"$(ROOT)/ltex.sh" "$${cli}" "$${json}" "$(ELOQUENCE_TEXS)"
 	date > "$@"
 
+.SILENT:
 $(TMP)/ltex/bin/ltex-cli: $(ROOT)/setup-ltex.sh | $(TMP)
 	mkdir -p "$$(dirname "$@")"
 	if ! which "ltex-cli" > "$@"; then
 		"$(ROOT)/setup-ltex.sh" $(TMP)
 	fi
 
+.SILENT:
 $(TMP)/vale/%.txt: $(TMP)/md/%.md $(ROOT)/vale.ini $(ROOT)/vale-styles | $(TMP)/vale
 	vale --config $(ROOT)/vale.ini "$<"
 	date > "$@"
 
+.SILENT:
 $(TMP)/md/%.md: $(TMP)/pdf/%.pdf | $(TMP)/md
 	pdftotext "$<" "$@"
 	sed -i -E 's/===(.*)==(.*)===/<!-- vale \1 = off --> \2 <!-- vale \1 = on -->/g' "$@"
 
+.SILENT:
 $(TMP)/pdf/%.pdf: $(TMP)/double/%.tex $(ROOT)/compile-double.sh | $(TMP)/pdf
 	$(ROOT)/compile-double.sh "$<" "$@"
 
+.SILENT:
 $(TMP)/double/%.tex: tex/%.tex $(ROOT)/create-double.sh | $(TMP)/double
 	$(ROOT)/create-double.sh "$<" "$@" "$(REPO)"
 
