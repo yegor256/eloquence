@@ -36,7 +36,7 @@ $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh
 	if ! which "$${cli}"; then
 	    cli=$(TMP)/ltex/bin/ltex-cli
 	fi
-	json=$(REPO)/ltex.json
+	json=$(REPO)/.ltex.json
 	if [ -e "$${json}" ]; then
 		echo "We are using custom LTeX config: $${json}"
 	else
