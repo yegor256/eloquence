@@ -34,7 +34,11 @@ $(TMP)/jobs/ltex.txt: $(ELOQUENCE_TEXS) $(TMP)/ltex/bin/ltex-cli $(ROOT)/ltex.sh
 	if ! which "$${cli}"; then
 	    cli=$(TMP)/ltex/bin/ltex-cli
 	fi
-	"$(ROOT)/ltex.sh" "$${cli}" $(ROOT)/ltex.json "$(ELOQUENCE_TEXS)"
+	json=$(REPO)/ltex.json
+	if [ ! -e "$${json}" ]; then
+		json=$(ROOT)/ltex.json
+	fi
+	"$(ROOT)/ltex.sh" "$${cli}" "$${json}" "$(ELOQUENCE_TEXS)"
 	date > "$@"
 
 $(TMP)/ltex/bin/ltex-cli: $(ROOT)/setup-ltex.sh | $(TMP)
