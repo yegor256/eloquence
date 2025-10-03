@@ -29,6 +29,15 @@ No subdirectories!
 
 Don't forget to add `.eloquence/` to `.gitignore`.
 
+## How to Configure
+
+You can create the `.eloquence.double.tex` file in the root of your codebase.
+It will be included into every `.tex` document before sending it to Vale.
+
+You can also create `.eloquence.double.sh` file.
+It will be executed with a single parameter: path of `.tex` file.
+You can modify the provided TeX document before it goes to Vale.
+
 ## How to Contribute
 
 Fork repository, make changes, send us a
