@@ -8,7 +8,7 @@ set -e -o pipefail
 cli=$1
 json=$2
 
-if ! "${cli}" "--version"; then
+if ! "${cli}" "--version" >/dev/null; then
     echo "LTeX is not installed correctly"
     exit
 fi
