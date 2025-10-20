@@ -8,6 +8,11 @@ set -e -o pipefail
 cli=$1
 json=$2
 
+if ! "${cli}" "--version"; then
+    echo "LTeX is not installed correctly"
+    exit
+fi
+
 IFS=' ' read -ra texs <<< "$3"
 
 files=()
