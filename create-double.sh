@@ -52,6 +52,9 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
 
 (
     printf '\\documentclass{article}\n'
+    if [ -e "${repo}/.eloquence.double.tex" ]; then
+        cat "${repo}/.eloquence.double.tex"
+    fi
     for p in "${packages[@]}"; do
         printf '\\usepackage{%s}\n' "${p}"
     done
@@ -70,9 +73,6 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
     printf '\\hyphenpenalty=10000\n'
     printf '\\hbadness=10000\n'
     printf '\\setlength{\\parskip}{2em}\n'
-    if [ -e "${repo}/.eloquence.double.tex" ]; then
-        cat "${repo}/.eloquence.double.tex"
-    fi
     printf '\\begin{document}\n'
     printf '\\thispagestyle{empty}\n'
     perl -0777 -p -e "s/\\\begin\{(ffcode|ffsave|phiquation\*?)\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{(ffcode|ffsave|phiquation\*?)\}/code skipped./smg" "${src}" \
