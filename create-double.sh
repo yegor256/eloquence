@@ -65,7 +65,8 @@ packages=( xcolor paralist multicol booktabs tikz to-be-determined )
         cmd=$(echo "${b}" | cut -f1 -d' ')
         args=$(echo "${b}" | cut -f2 -d' ')
         rep=$(echo "${b}" | cut -f3- -d' ')
-        printf '\\ifdefined\\%s\\newcommand\\%s%s{\\textcolor{orange}{%s}}\\fi\n' "${cmd}" "${cmd}" "${args}" "${rep}"
+        printf '\\ifdefined\\%s\\else\\newcommand\\%s%s{\\textcolor{orange}{%s}}\\fi\n' \
+            "${cmd}" "${cmd}" "${args}" "${rep}"
     done
     printf '\\newenvironment{gpt}{}{}\n'
     printf '\\tolerance=1\n'
