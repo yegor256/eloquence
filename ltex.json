@@ -5,7 +5,8 @@
         "COMMA_PARENTHESIS_WHITESPACE",
         "UPPERCASE_SENTENCE_START",
         "CONSECUTIVE_SPACES",
-        "MORFOLOGIK_RULE_EN_US"
+        "MORFOLOGIK_RULE_EN_US",
+        "SENTENCE_WHITESPACE"
       ]
     },
     "language": "en-US",
