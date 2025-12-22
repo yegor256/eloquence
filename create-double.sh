@@ -50,6 +50,7 @@ commands=(
 
 packages=( xcolor paralist multicol booktabs tikz to-be-determined )
 
+mkdir -p "$(dirname "${target}")"
 (
     printf '\\documentclass{article}\n'
     if [ -e "${repo}/.eloquence.double.tex" ]; then
