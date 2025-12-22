@@ -15,4 +15,5 @@ if ! pdflatex -interaction=errorstopmode -halt-on-error -no-shell-escape double.
     exit 1
 fi
 cd -
+mkdir -p "$(dirname "${pdf}")"
 mv "${tmp}/double.pdf" "${pdf}"
