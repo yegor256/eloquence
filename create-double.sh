@@ -59,7 +59,7 @@ mkdir -p "$(dirname "${target}")"
     for p in "${packages[@]}"; do
         printf '\\usepackage{%s}\n' "${p}"
     done
-    for lib in calc tikzmark; do
+    for lib in calc tikzmark positioning; do
         printf '\\usetikzlibrary{%s}\n' "${lib}"
     done
     for b in "${commands[@]}"; do
