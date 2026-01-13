@@ -20,7 +20,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install --yes aspell
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 4.0.1
           bundler-cache: true
       - run: gem install texsc
       - run: sudo snap install vale
