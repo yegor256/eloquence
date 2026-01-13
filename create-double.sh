@@ -80,7 +80,7 @@ mkdir -p "$(dirname "${target}")"
     perl -0777 -p -e "s/\\\begin\{(ffcode|ffsave|phiquation\*?)\}(\\[.*\\])?\\n(([^\\\][^\\n]*|)\\n)+\\\end\{(ffcode|ffsave|phiquation\*?)\}/code skipped./smg" "${src}" \
         | perl -0777 -p -e "s|\\\endinput||smg" \
         | perl -0777 -p -e "s|\\\input\{.+?\}|input skipped.|smg"
-    printf '\\end{document}\n'
+    printf '\n\\end{document}\n'
 ) > "${target}"
 
 if [ -e "${repo}/.eloquence.double.sh" ]; then
