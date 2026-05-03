@@ -24,7 +24,7 @@ jobs:
           bundler-cache: true
       - run: gem install texsc
       - run: sudo snap install vale
-      - uses: zauguin/install-texlive@v4.3
+      - uses: zauguin/install-texlive@v4.4.0
         with:
           packages: scheme-basic geometry etoolbox xcolor paralist pgf xkeyval mathtools tikzmark booktabs to-be-determined
           texlive_version: 2025
